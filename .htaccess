@@ -4,9 +4,9 @@ RewriteRule ^(.*)index.html$ /$1 [R=301,L]
 
 RewriteEngine On
 
-# Redirect /www ke root domain
-RewriteCond %{REQUEST_URI} ^/www/?$ [NC]
-RewriteRule ^.*$ https://www.nexthighestlevel.com/ [L,R=301]
+# Redirect semua URL yang berakhir dengan /www ke path tanpa /www
+RewriteCond %{REQUEST_URI} ^(.*)/www/?$ [NC]
+RewriteRule ^ %1 [L,R=301]
 
 
 RewriteEngine on
@@ -19,6 +19,7 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]
+
 
 
 
