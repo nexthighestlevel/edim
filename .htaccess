@@ -1,0 +1,20 @@
+### re-direct index.html to root / ###RewriteCond %{THE_REQUEST} ^.*/index.html HTTP/
+RewriteRule ^(.*)index.html$ /$1 [R=301,L]
+
+
+RewriteRule ^(.*)$ /www
+RewriteRule ^(.*)$ www/$1
+RewriteRule ^$ www/
+RedirectMatch 301 ^/(.*)$ /www
+
+
+RewriteEngine on
+RewriteCond %{QUERY_STRING} ^(.*)i=[^&]+(.*)$ [NC]
+RewriteRule ^(.*)$ /$1?%1%2 [R=301,L]
+
+
+#remove html file extension-e.g. https://example.com/file.html will become https://example.com/file
+RewriteEngine on 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
